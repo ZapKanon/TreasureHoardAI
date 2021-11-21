@@ -21,6 +21,8 @@ public class Character : MonoBehaviour
     //Locations surrounding the hoard where the dragon patrols
     [SerializeField] public List<Transform> dragonPatrolPoints;
 
+    public bool reachedDestination = false;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -35,5 +37,19 @@ public class Character : MonoBehaviour
     protected virtual void Update()
     {
         
+    }
+
+    public void SetDestination(Vector3 destination)
+    {
+        navMeshAgent.destination = new Vector3(destination.x, transform.position.y, destination.z);
+        reachedDestination = false;
+    }
+
+    public void CheckDestination()
+    {
+        if (Vector3.Distance(navMeshAgent.destination, transform.position) < 0.1f)
+        {
+            reachedDestination = true;
+        }
     }
 }

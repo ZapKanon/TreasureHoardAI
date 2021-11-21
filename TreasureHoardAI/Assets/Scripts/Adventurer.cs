@@ -15,14 +15,6 @@ public class Adventurer : Character
     // Update is called once per frame
     protected override void Update()
     {
-        GoToHoard();
-    }
 
-    /// <summary>
-    /// The adventurer travels to the hoard in search of treasure.
-    /// </summary>
-    private void GoToHoard()
-    {
-        navMeshAgent.destination = hoardLocation.position;
     }
 }

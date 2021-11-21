@@ -15,6 +15,11 @@ GameObject:
   - component: {fileID: 7979250465788498760}
   - component: {fileID: 3920583316413122786}
   - component: {fileID: 5533079329622195957}
+  - component: {fileID: -4959590817208209077}
+  - component: {fileID: -4141753509125609188}
+  - component: {fileID: -6386142428939586329}
+  - component: {fileID: -4670355728398785015}
+  - component: {fileID: -5211965069531219637}
   m_Layer: 6
   m_Name: Adventurer
   m_TagString: Adventurer
@@ -114,6 +119,7 @@ MonoBehaviour:
   locationsManager: {fileID: 0}
   hoardLocation: {fileID: 0}
   dragonPatrolPoints: []
+  reachedDestination: 0
 --- !u!195 &3920583316413122786
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -148,8 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cfde1aa0839e44c81301f64e1c2003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adventurers: []
-  dragons: []
+  adventurersInView: []
+  dragonsInView: []
+  treasureInView: []
   radius: 40
   angle: 100
   adventMask:
@@ -165,3 +172,71 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   targetInView: 0
+  activeTarget: {fileID: 0}
+  activeTargetType: 
+  locationsManager: {fileID: 0}
+  carryingTreasure: 0
+--- !u!114 &-4959590817208209077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254464967299876132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c449df7f5fc564e9704e0a0fca3af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 10
+--- !u!114 &-4141753509125609188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254464967299876132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0450d65a217c1646bafb43483330222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 20
+--- !u!114 &-6386142428939586329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254464967299876132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc49b354811980f408ec95f988dc4f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4670355728398785015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254464967299876132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd522f6e172e9b408dcdc3cccbdb6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5211965069531219637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254464967299876132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c28422c8fcf6a548a812f14b7ce353d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeGoal: {fileID: 0}
+  activeAction: {fileID: 0}

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PerceptionSystem : MonoBehaviour
 {
-    [SerializeField] List<GameObject> adventurersInView;
-    [SerializeField] List<GameObject> dragonsInView;
-    [SerializeField] List<GameObject> treasureInView;
+    [SerializeField] public List<GameObject> adventurersInView;
+    [SerializeField] public List<GameObject> dragonsInView;
+    [SerializeField] public List<GameObject> treasureInView;
 
     public float radius;
     public float angle;
@@ -21,14 +21,18 @@ public class PerceptionSystem : MonoBehaviour
     public GameObject activeTarget;
     public string activeTargetType;
 
+    [SerializeField] public LocationsManager locationsManager;
+
     //Characters can carry one treasure at a time
-    public bool hasTreasure = false;
+    public bool carryingTreasure = false;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(FOVRoutine());
         //Debug.Log(LayerMask.NameToLayer("Adventurer"));
+        locationsManager = GameObject.Find("LocationsManager").GetComponent<LocationsManager>();
+
     }
 
     private IEnumerator FOVRoutine()

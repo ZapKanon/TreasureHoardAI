@@ -19,6 +19,7 @@ public class Goal : MonoBehaviour, IGoal
     void Awake()
     {
         character = GetComponent<Character>();
+        perception = GetComponent<PerceptionSystem>();
     }
 
     void Start()
@@ -26,10 +27,9 @@ public class Goal : MonoBehaviour, IGoal
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        UpdateGoal();
     }
 
     public virtual int Prioritize()
