@@ -33,6 +33,7 @@ public class Action_GoToHoard : Action
 
     public override void UpdateAction()
     {
+        character.CheckDestination();
         if(character.reachedDestination)
         {
             Debug.Log("At hoard. Nothing to do...");

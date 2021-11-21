@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d9930e31f45144ca29e97c15991d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPatrolPoint: 0
   locationsManager: {fileID: 0}
   hoardLocation: {fileID: 0}
   dragonPatrolPoints: []
@@ -130,8 +131,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 4.5
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

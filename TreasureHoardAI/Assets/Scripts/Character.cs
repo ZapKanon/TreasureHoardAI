@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
 
     //Distance at which a character is considered to have reached their destination
     protected float arrivalDistance = 5.01f;
+    public int currentPatrolPoint = 0;
 
     [SerializeField] public GameObject locationsManager;
 
@@ -47,7 +48,12 @@ public class Character : MonoBehaviour
 
     public void CheckDestination()
     {
-        if (Vector3.Distance(navMeshAgent.destination, transform.position) < 0.1f)
+        if (this.gameObject.name != "Dragon")
+        {
+            Debug.Log("Dragon is going here: " + navMeshAgent.destination + " but is sitting here: " + new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z));
+        }
+
+        if (Vector3.Distance(navMeshAgent.destination, new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z)) < 0.1f)
         {
             reachedDestination = true;
         }

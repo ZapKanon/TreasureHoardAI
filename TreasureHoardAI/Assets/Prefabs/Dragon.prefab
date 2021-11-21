@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4835461358106644031}
   - component: {fileID: -6765186628617792181}
   - component: {fileID: -2209726088886519237}
+  - component: {fileID: 4311845206273901887}
+  - component: {fileID: 7989042061941267246}
   m_Layer: 7
   m_Name: Dragon
   m_TagString: Dragon
@@ -133,9 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9412ec14fb6e0442bb8dc13f822f6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPatrolPoint: 0
   locationsManager: {fileID: 0}
   hoardLocation: {fileID: 0}
   dragonPatrolPoints: []
+  reachedDestination: 0
 --- !u!114 &-2209726088886519237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,8 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cfde1aa0839e44c81301f64e1c2003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adventurers: []
-  dragons: []
+  adventurersInView: []
+  dragonsInView: []
+  treasureInView: []
   radius: 40
   angle: 100
   adventMask:
@@ -165,3 +170,32 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   targetInView: 0
+  activeTarget: {fileID: 0}
+  activeTargetType: 
+  locationsManager: {fileID: 0}
+  carryingTreasure: 0
+--- !u!114 &4311845206273901887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8287877460966885087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08593d0e32415ac4c80398ef3c7e6242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7989042061941267246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8287877460966885087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2c4ae930a6b2a4ca375474fc0b7852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 10
