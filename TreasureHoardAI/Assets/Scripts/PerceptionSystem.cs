@@ -4,71 +4,101 @@ using UnityEngine;
 
 public class PerceptionSystem : MonoBehaviour
 {
-    [SerializeField] List<GameObject> adventurers;
-    [SerializeField] List<GameObject> dragons;
+    [SerializeField] List<GameObject> adventurersInView;
+    [SerializeField] List<GameObject> dragonsInView;
+    [SerializeField] List<GameObject> treasureInView;
 
-    [SerializeField] MeshCollider viewCone;
-    [SerializeField] GameObject lastHit;
-    [SerializeField] Vector3 collisionLocation;
+    public float radius;
+    public float angle;
+
+    public LayerMask adventMask;
+    public LayerMask dragonMask;
+    public LayerMask treasureMask;
+
+    public LayerMask obstructionMask;
+
+    public bool targetInView;
+    public GameObject activeTarget;
+    public string activeTargetType;
+
+    //Characters can carry one treasure at a time
+    public bool hasTreasure = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(FOVRoutine());
+        //Debug.Log(LayerMask.NameToLayer("Adventurer"));
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator FOVRoutine()
     {
-        //Debug.DrawRay(this.transform.position, transform.forward * 100, Color.red);
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+
+        while(true)
+        {
+            yield return wait;
+            adventurersInView = new List<GameObject>();
+            dragonsInView = new List<GameObject>();
+            treasureInView = new List<GameObject>();
+
+            FieldOfViewCheck(adventMask, "Adventurer");
+            FieldOfViewCheck(dragonMask, "Dragon");
+            FieldOfViewCheck(treasureMask, "Treasure");
+        }
     }
 
-    //private void OnTriggerEnter(Collider collision)
-    //{
-    //    if (this.name == "Dragon")
-    //    {
-    //        if (!CheckLineOfSight(collision))
-    //        {
-    //            Debug.Log(gameObject.name + " sees an adventurer: " + collision.gameObject.name);
-    //        }
-    //    }
-            
-        
-        
-    //    else if (collision.gameObject.tag == "Dragon")
-    //    {
-    //        //if (CheckLineOfSight(collision))
-    //        //Debug.Log(gameObject.name + " sees a dragon: " + collision.gameObject.name);
-    //    }
-    //}
+    private void FieldOfViewCheck(LayerMask targetMask, string targetType)
+    {
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
-    //After detecting a collision with a view cone, check if anything intercepts a raycast to the target
-    //private bool CheckLineOfSight(Collider collision)
-    //{
-    //    //Ray ray = new Ray(this.transform.position, this.transform.position - collision.gameObject.transform.position);
-    //    //RaycastHit hit;
+        if(rangeChecks.Length != 0)
+        {
+            for (int i = 0; i < rangeChecks.Length; i++)
+            {
+                if (rangeChecks[i].gameObject != gameObject)
+                {
+                    Transform target = rangeChecks[i].transform;
+                    Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-    //    //if (Physics.Raycast(ray, out hit, 40))
-    //    //{
-    //    //    Debug.Log(hit.transform.gameObject);
-    //    //    //If the thing we hit is the thing we were checking for
-    //    //    if (hit.transform.gameObject == collision.transform.gameObject)
-    //    //    {
-    //    //        lastHit = hit.transform.gameObject;
-    //    //        collisionLocation = hit.point;
-    //    //        return true;
-    //    //    }
-    //    //}
+                    if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+                    {
+                        float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-    //    //return false;
-    //    //Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.green, 1000);
-    //    if (Physics.Linecast(transform.position, collision.gameObject.transform.position, out RaycastHit hitInfo))
-    //    {
-    //        Debug.Log("Blocked");
-    //        Debug.DrawLine(this.transform.position, hitInfo.transform.gameObject.transform.position, Color.red, 10);
-        
-    //        return false;
-    //    }
-
-    //    return true;
-    //}
+                        if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                        {
+                            targetInView = true;
+                            Debug.Log(name + " sees " + target.name);
+                            Debug.DrawLine(transform.position, target.position, Color.green, 0.2f);
+                            if(targetType == "Adventurer")
+                            {
+                                adventurersInView.Add(target.gameObject);
+                            }
+                            else if(targetType == "Dragon")
+                            {
+                                dragonsInView.Add(target.gameObject);
+                            }
+                            else if(targetType == "Treasure")
+                            {
+                                treasureInView.Add(target.gameObject);
+                            }
+                        }
+                        else
+                        {
+                            targetInView = false;
+                        }
+                    }
+                    else
+                    {
+                        targetInView = false;
+                    }
+                }
+            }
+        }
+        //Target is no longer in view
+        else if(targetInView)
+        {
+            targetInView = false;
+        }
+    }
 }
