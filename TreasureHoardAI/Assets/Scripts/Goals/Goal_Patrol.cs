@@ -11,9 +11,4 @@ public class Goal_Patrol : Goal
     {
         return priority;
     }
-
-    public override bool ValidGoal()
-    {
-        return true;
-    }
 }

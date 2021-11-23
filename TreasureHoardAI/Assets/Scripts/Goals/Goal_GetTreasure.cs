@@ -12,16 +12,4 @@ public class Goal_GetTreasure : Goal
         return priority;
     }
 
-    //Invalid if already holding treasure or if there is none nearby
-    public override bool ValidGoal()
-    {
-        if (perception.treasureInView.Count > 0 && !perception.carryingTreasure)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }

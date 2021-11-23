@@ -31,11 +31,12 @@ public class GOAPlanner : MonoBehaviour
 
         foreach (Goal goal in goals)
         {
-            //Let each goal get its priority in order
+            //Let each goal get its priority figured out
             goal.UpdateGoal();
 
             //If the goal is currently invalid, skip over it
-            if (!goal.ValidGoal())
+            Action candidateAction = goal.ValidGoal(actions);
+            if (candidateAction == null || !candidateAction.ValidAction())
             {
                 continue;
             }
@@ -46,24 +47,11 @@ public class GOAPlanner : MonoBehaviour
                 continue;
             }
 
-            Action newAction = null;
-            foreach(Action action in actions)
-            {
-                //If the goal doesn't correspond to any available action, skip over it
-                if (action.GetGoal() != goal.GetType())
-                {
-                    continue;
-                }
-
-                //Set candidate action
-                newAction = action;
-            }
-
             //If an action remains after these checks, update optimalGoal
-            if (newAction != null)
+            if (candidateAction != null)
             {
                 optimalGoal = goal;
-                optimalAction = newAction;
+                optimalAction = candidateAction;
             }
         }
 

@@ -2,47 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action_GoToHoard : Action
+public class Action_GoToDepositPoint : Action
 {
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        resultEffects.Add(new KeyValuePair<string, object>("atHoard", true));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        resultEffects.Add(new KeyValuePair<string, object>("atDepositPoint", true));
     }
 
     public override System.Type GetGoal()
     {
-        return typeof(Goal_GoToHoard);
+        return typeof(Goal_DepositTreasure);
     }
 
     public override bool ValidAction()
     {
-        return true;
+        if (character.carriedTreasure != null)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public override void ActionBegin()
     {
-        character.SetDestination(perception.locationsManager.hoardPoint.position);
+        character.SetDestination(perception.locationsManager.depositPoints[character.team - 1].position);
     }
 
     public override void ActionEnd()
     {
-
+        
     }
 
     public override void UpdateAction()
     {
         character.CheckDestination();
-        if(character.reachedDestination)
+        if (character.reachedDestination)
         {
-            Debug.Log("At hoard. Nothing to do...");
+            
         }
     }
 }

@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+enum Team
+{
+    Blue,
+    Red,
+    Green,
+    Yellow
+}
+
 public class Character : MonoBehaviour
 {
     protected NavMeshAgent navMeshAgent;
@@ -23,6 +31,11 @@ public class Character : MonoBehaviour
     [SerializeField] public List<Transform> dragonPatrolPoints;
 
     public bool reachedDestination = false;
+
+    //Characters can carry one treasure at a time
+    public Treasure carriedTreasure = null;
+
+    [SerializeField] public int team;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -50,12 +63,29 @@ public class Character : MonoBehaviour
     {
         if (this.gameObject.name != "Dragon")
         {
-            Debug.Log("Dragon is going here: " + navMeshAgent.destination + " but is sitting here: " + new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z));
+            //Debug.Log("Dragon is going here: " + navMeshAgent.destination + " but is sitting here: " + new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z));
         }
 
         if (Vector3.Distance(navMeshAgent.destination, new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z)) < 0.1f)
         {
             reachedDestination = true;
+        }
+    }
+
+    public void PickUpTreasure(Treasure treasure)
+    {
+        if (carriedTreasure == null)
+        {
+            treasure.PickedUp(this);
+        }
+    }
+
+    public void DepositTreasure()
+    {
+        if (carriedTreasure != null)
+        {
+            carriedTreasure.gameObject.SetActive(true);
+            carriedTreasure.Deposited(this);
         }
     }
 }

@@ -4,40 +4,49 @@ using UnityEngine;
 
 public class Action_GetTreasure : Action
 {
+    private Treasure targetTreasure;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        resultEffects.Add(new KeyValuePair<string, object>("hasTreasure", true));
     }
 
     public override System.Type GetGoal()
     {
-        return typeof(Goal_GetTreasure);
+        return typeof(Goal_DepositTreasure);
+    }
+
+    public override bool ValidAction()
+    {
+        if (perception.treasureInView.Count > 0 && character.carriedTreasure == null)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public override void ActionBegin()
     {
-        character.SetDestination(perception.treasureInView[0].transform.position);
+        targetTreasure = perception.treasureInView[0].GetComponent<Treasure>();
+        character.SetDestination(targetTreasure.transform.position);
     }
 
     public override void ActionEnd()
     {
-
+        targetTreasure = null;
     }
 
     public override void UpdateAction()
     {
+        character.CheckDestination();
         if (character.reachedDestination)
         {
-            if (perception.carryingTreasure)
+            if (character.carriedTreasure == null)
             {
-                Debug.Log("Got treasure!");
+                character.PickUpTreasure(targetTreasure);
             }
         }
     }

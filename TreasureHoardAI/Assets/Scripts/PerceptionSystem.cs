@@ -23,16 +23,18 @@ public class PerceptionSystem : MonoBehaviour
 
     [SerializeField] public LocationsManager locationsManager;
 
-    //Characters can carry one treasure at a time
-    public bool carryingTreasure = false;
+    [SerializeField] public List<KeyValuePair<string, object>> worldState;
+
+    private Character character;
 
     // Start is called before the first frame update
     void Start()
     {
+        worldState = new List<KeyValuePair<string, object>>();
         StartCoroutine(FOVRoutine());
         //Debug.Log(LayerMask.NameToLayer("Adventurer"));
         locationsManager = GameObject.Find("LocationsManager").GetComponent<LocationsManager>();
-
+        character = GetComponent<Character>();
     }
 
     private IEnumerator FOVRoutine()
@@ -42,6 +44,9 @@ public class PerceptionSystem : MonoBehaviour
         while(true)
         {
             yield return wait;
+
+            worldState = new List<KeyValuePair<string, object>>();
+
             adventurersInView = new List<GameObject>();
             dragonsInView = new List<GameObject>();
             treasureInView = new List<GameObject>();
@@ -49,6 +54,42 @@ public class PerceptionSystem : MonoBehaviour
             FieldOfViewCheck(adventMask, "Adventurer");
             FieldOfViewCheck(dragonMask, "Dragon");
             FieldOfViewCheck(treasureMask, "Treasure");
+
+            //Update world state based on objects perceived
+
+            if (adventurersInView.Count > 0)
+            {
+                worldState.Add(new KeyValuePair<string, object>("seesAdventurer", true));
+            }
+
+            if (dragonsInView.Count > 0)
+            {
+                worldState.Add(new KeyValuePair<string, object>("seesDragon", true));
+            }
+
+            if (treasureInView.Count > 0)
+            {
+                worldState.Add(new KeyValuePair<string, object>("seesTreasure", true));
+            }
+
+            //Update world state based on position
+
+            if (Vector3.Distance(transform.position, locationsManager.hoardPoint.position) < 0.1f)
+            {
+                worldState.Add(new KeyValuePair<string, object>("atHoard", true));
+            }
+
+            else if (Vector3.Distance(transform.position, locationsManager.depositPoints[character.team - 1].position) < 0.1f)
+            {
+                worldState.Add(new KeyValuePair<string, object>("atDepositPoint", true));
+            }
+
+            //Update world state based on having treasure picked up
+
+            if (character.carriedTreasure != null)
+            {
+                worldState.Add(new KeyValuePair<string, object>("hasTreasure", true));
+            }
         }
     }
 
