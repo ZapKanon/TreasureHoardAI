@@ -5,7 +5,7 @@ using UnityEngine;
 public class Treasure : MonoBehaviour
 {
     Character carryingCharacter = null;
-    private bool pickedUp = false;
+    public bool beingCarried = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +23,12 @@ public class Treasure : MonoBehaviour
     //Disables the treasure's renderer and sets it to follow the character's position
     public void PickedUp(Character character)
     {
-        carryingCharacter = character;
-        carryingCharacter.carriedTreasure = this;
-        gameObject.SetActive(false);
+        if (beingCarried == false)
+        {
+            carryingCharacter = character;
+            carryingCharacter.carriedTreasure = this;
+            gameObject.SetActive(false);
+        }
     }
 
     //Called when a character drops their treasure
@@ -35,5 +38,6 @@ public class Treasure : MonoBehaviour
         carryingCharacter = null;
         character.carriedTreasure = null;
         transform.position = new Vector3(carryingCharacter.transform.position.x, transform.position.y, carryingCharacter.transform.position.z);
+        beingCarried = false;
     }
 }

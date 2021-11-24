@@ -30,7 +30,7 @@ public class Action_GetTreasure : Action
 
     public override void ActionBegin()
     {
-        targetTreasure = perception.treasureInView[0].GetComponent<Treasure>();
+        targetTreasure = perception.FindClosestTarget(perception.treasureInView).GetComponent<Treasure>();
         character.SetDestination(targetTreasure.transform.position);
     }
 
@@ -41,12 +41,15 @@ public class Action_GetTreasure : Action
 
     public override void UpdateAction()
     {
+        targetTreasure = perception.FindClosestTarget(perception.treasureInView).GetComponent<Treasure>();
+        character.SetDestination(targetTreasure.transform.position);
+
         character.CheckDestination();
         if (character.reachedDestination)
         {
             if (character.carriedTreasure == null)
             {
-                character.PickUpTreasure(targetTreasure);
+                character.PickUpTreasure(perception.FindClosestTarget(perception.treasureInView).GetComponent<Treasure>());
             }
         }
     }

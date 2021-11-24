@@ -66,7 +66,7 @@ public class Character : MonoBehaviour
             //Debug.Log("Dragon is going here: " + navMeshAgent.destination + " but is sitting here: " + new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z));
         }
 
-        if (Vector3.Distance(navMeshAgent.destination, new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z)) < 0.1f)
+        if (Vector3.Distance(navMeshAgent.destination, new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z)) < 2f)
         {
             reachedDestination = true;
         }
@@ -74,7 +74,7 @@ public class Character : MonoBehaviour
 
     public void PickUpTreasure(Treasure treasure)
     {
-        if (carriedTreasure == null)
+        if (carriedTreasure == null && treasure.beingCarried == false)
         {
             treasure.PickedUp(this);
         }

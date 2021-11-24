@@ -115,15 +115,15 @@ public class PerceptionSystem : MonoBehaviour
                             targetInView = true;
                             Debug.Log(name + " sees " + target.name);
                             Debug.DrawLine(transform.position, target.position, Color.green, 0.2f);
-                            if(targetType == "Adventurer")
+                            if (targetType == "Adventurer")
                             {
                                 adventurersInView.Add(target.gameObject);
                             }
-                            else if(targetType == "Dragon")
+                            else if (targetType == "Dragon")
                             {
                                 dragonsInView.Add(target.gameObject);
                             }
-                            else if(targetType == "Treasure")
+                            else if (targetType == "Treasure" && target.GetComponent<Treasure>().beingCarried == false)
                             {
                                 treasureInView.Add(target.gameObject);
                             }
@@ -145,5 +145,25 @@ public class PerceptionSystem : MonoBehaviour
         {
             targetInView = false;
         }
+    }
+
+    //From a list of target objects, find the closest one
+    public GameObject FindClosestTarget(List<GameObject> targetsList)
+    {
+        GameObject closest = null;
+        float closestDistance = 5000f;
+
+        //Loop through the list to find the closest object
+        foreach (GameObject target in targetsList)
+        {
+            if (closest == null || Vector3.Distance(transform.position, target.transform.position) < Vector3.Distance(transform.position, closest.transform.position))
+            {
+                closest = target;
+                closestDistance = Vector3.Distance(transform.position, target.transform.position);
+            }
+        }
+        Debug.Log(this.gameObject.name + " is closest to " + closest.gameObject.name);
+
+        return closest;
     }
 }
