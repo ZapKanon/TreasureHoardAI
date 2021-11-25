@@ -60,6 +60,11 @@ public class PerceptionSystem : MonoBehaviour
             if (adventurersInView.Count > 0)
             {
                 worldState.Add(new KeyValuePair<string, object>("seesAdventurer", true));
+
+                if (Vector3.Distance(transform.position, FindClosestTarget(adventurersInView).transform.position) < 5.0f)
+                {
+                    worldState.Add(new KeyValuePair<string, object>("nearAdventurer", true));
+                }
             }
 
             if (dragonsInView.Count > 0)

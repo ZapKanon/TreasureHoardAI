@@ -15,8 +15,12 @@ GameObject:
   - component: {fileID: 4835461358106644031}
   - component: {fileID: -6765186628617792181}
   - component: {fileID: -2209726088886519237}
+  - component: {fileID: -5402346873902268103}
   - component: {fileID: 4311845206273901887}
   - component: {fileID: 7989042061941267246}
+  - component: {fileID: -4392356336463281129}
+  - component: {fileID: -1672595585607864443}
+  - component: {fileID: -8365985650566573535}
   m_Layer: 7
   m_Name: Dragon
   m_TagString: Dragon
@@ -140,6 +144,8 @@ MonoBehaviour:
   hoardLocation: {fileID: 0}
   dragonPatrolPoints: []
   reachedDestination: 0
+  carriedTreasure: {fileID: 0}
+  team: 0
 --- !u!114 &-2209726088886519237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +179,20 @@ MonoBehaviour:
   activeTarget: {fileID: 0}
   activeTargetType: 
   locationsManager: {fileID: 0}
-  carryingTreasure: 0
+--- !u!114 &-5402346873902268103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8287877460966885087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c28422c8fcf6a548a812f14b7ce353d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeGoal: {fileID: 0}
+  activeAction: {fileID: 0}
 --- !u!114 &4311845206273901887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08593d0e32415ac4c80398ef3c7e6242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 0
 --- !u!114 &7989042061941267246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +219,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 10
+--- !u!114 &-4392356336463281129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8287877460966885087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfcb0f71dd437a4c83491a1aa030bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 20
+--- !u!114 &-1672595585607864443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8287877460966885087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85e4637de72c394c9db15d315d162aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0
+--- !u!114 &-8365985650566573535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8287877460966885087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef1d691d117c094381693341ed35f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0

@@ -64,7 +64,7 @@ public class Goal : MonoBehaviour, IGoal
                 //Make sure the action is relevant to the intended goal
                 if (action.GetGoal() == GetType())
                 {
-                    //Check all of the action's result effects agains the goal's precondition at index 0 (the last unfulfilled precondition)
+                    //Check all of the action's result effects against the goal's precondition at index 0 (the last unfulfilled precondition)
                     foreach (KeyValuePair<string, object> effect in action.resultEffects)
                     {
                         //If an effect matches the precondition's desired state

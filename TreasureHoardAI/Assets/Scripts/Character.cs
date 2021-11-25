@@ -72,6 +72,7 @@ public class Character : MonoBehaviour
         }
     }
 
+    //Pick up a treasure object
     public void PickUpTreasure(Treasure treasure)
     {
         if (carriedTreasure == null && treasure.beingCarried == false)
@@ -80,6 +81,7 @@ public class Character : MonoBehaviour
         }
     }
 
+    //Place treasure at a deposit location and score one point
     public void DepositTreasure()
     {
         if (carriedTreasure != null)
@@ -89,5 +91,23 @@ public class Character : MonoBehaviour
 
             locationsManager.GetComponent<LocationsManager>().AddToScore(team);
         }
+    }
+
+    //Eat someone (likely an adventurer)
+    public void Eat(Character food)
+    {
+        food.Die();
+    }
+    
+    //Leave this earth (likely a a result of being eaten)
+    public void Die()
+    {   
+        //Drop any carried treasure
+        if (carriedTreasure != null)
+        {
+            carriedTreasure.Deposited(this);
+        }
+
+        gameObject.SetActive(false);
     }
 }
