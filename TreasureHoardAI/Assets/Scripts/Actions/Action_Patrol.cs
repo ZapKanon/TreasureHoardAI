@@ -8,17 +8,17 @@ public class Action_Patrol : Action
     protected override void Start()
     {
         base.Start();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        resultEffects.Add(new KeyValuePair<string, object>("patrolling", true));
     }
 
     public override System.Type GetGoal()
     {
         return typeof(Goal_Patrol);
+    }
+
+    public override bool ValidAction()
+    {
+        return true;
     }
 
     public override void ActionBegin()

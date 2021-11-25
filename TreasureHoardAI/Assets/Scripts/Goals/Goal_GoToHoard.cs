@@ -12,7 +12,6 @@ public class Goal_GoToHoard : Goal
     {
         base.Awake();
         preconditions.Add(new KeyValuePair<string, object>("atHoard", true));
-        Debug.Log(preconditions.Count);
     }
 
     public override int Prioritize()

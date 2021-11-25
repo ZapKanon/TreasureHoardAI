@@ -28,7 +28,7 @@ public class Action_GoToDepositPoint : Action
 
     public override void ActionBegin()
     {
-        character.SetDestination(perception.locationsManager.depositPoints[character.team - 1].position);
+        character.SetDestination(perception.locationsManager.depositPoints[(int)character.team].position);
     }
 
     public override void ActionEnd()

@@ -74,12 +74,12 @@ public class PerceptionSystem : MonoBehaviour
 
             //Update world state based on position
 
-            if (Vector3.Distance(transform.position, locationsManager.hoardPoint.position) < 0.1f)
+            if (Vector3.Distance(transform.position, locationsManager.hoardPoint.position) < 2.0f)
             {
                 worldState.Add(new KeyValuePair<string, object>("atHoard", true));
             }
-
-            else if (Vector3.Distance(transform.position, locationsManager.depositPoints[character.team - 1].position) < 0.1f)
+            
+            else if (Vector3.Distance(transform.position, locationsManager.depositPoints[(int)character.team].position) < 2.0f)
             {
                 worldState.Add(new KeyValuePair<string, object>("atDepositPoint", true));
             }

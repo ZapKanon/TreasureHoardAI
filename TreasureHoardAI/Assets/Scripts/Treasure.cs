@@ -37,7 +37,9 @@ public class Treasure : MonoBehaviour
     {
         carryingCharacter = null;
         character.carriedTreasure = null;
-        transform.position = new Vector3(carryingCharacter.transform.position.x, transform.position.y, carryingCharacter.transform.position.z);
+        transform.position = new Vector3(character.transform.position.x, transform.position.y, character.transform.position.z);
         beingCarried = false;
+
+        Debug.Log("Treasure Deposited!");
     }
 }

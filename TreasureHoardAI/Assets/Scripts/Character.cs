@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-enum Team
+public enum Team
 {
     Blue,
     Red,
@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
     //Characters can carry one treasure at a time
     public Treasure carriedTreasure = null;
 
-    [SerializeField] public int team;
+    [SerializeField] public Team team;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -86,6 +86,8 @@ public class Character : MonoBehaviour
         {
             carriedTreasure.gameObject.SetActive(true);
             carriedTreasure.Deposited(this);
+
+            locationsManager.GetComponent<LocationsManager>().AddToScore(team);
         }
     }
 }
