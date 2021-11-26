@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Devour a nearby adventurer, removing them from the game
 public class Action_EatAdventurer : Action
 {
     protected override void Start()
@@ -17,6 +18,7 @@ public class Action_EatAdventurer : Action
 
     public override bool ValidAction()
     {
+        //Can only eat an adventurer if one is within eating range
         if (perception.worldState.Contains(new KeyValuePair<string, object>("nearAdventurer", true)))
         {
             return true;

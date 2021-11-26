@@ -8,6 +8,7 @@ public class Goal_GoToHoard : Goal
     //By default a low priority goal that activates when there's nothing else to do
     [SerializeField] int priority = 10;
 
+    //Set up preconditions in REVERSE order
     public override void Awake()
     {
         base.Awake();

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Go to the deposit location that matches the character's team
+//Characters know where their deposit location is at all times
 public class Action_GoToDepositPoint : Action
 {
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -18,6 +19,7 @@ public class Action_GoToDepositPoint : Action
 
     public override bool ValidAction()
     {
+        //Only go to the deposit point if carrying treasure
         if (character.carriedTreasure != null)
         {
             return true;
@@ -26,6 +28,7 @@ public class Action_GoToDepositPoint : Action
         return false;
     }
 
+    //Move to the deposit location
     public override void ActionBegin()
     {
         character.SetDestination(perception.locationsManager.depositPoints[(int)character.team].position);
@@ -38,10 +41,6 @@ public class Action_GoToDepositPoint : Action
 
     public override void UpdateAction()
     {
-        character.CheckDestination();
-        if (character.reachedDestination)
-        {
-            
-        }
+
     }
 }

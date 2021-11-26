@@ -2,19 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Go to the dragon's hoard, since that's where treasure is likely to be
+//Characters know where the hoard is at all times
 public class Action_GoToHoard : Action
 {
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         resultEffects.Add(new KeyValuePair<string, object>("atHoard", true));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public override System.Type GetGoal()
@@ -37,6 +32,7 @@ public class Action_GoToHoard : Action
 
     }
 
+    //If there's no treasure left at the hoard, characters may just stand there
     public override void UpdateAction()
     {
         character.CheckDestination();

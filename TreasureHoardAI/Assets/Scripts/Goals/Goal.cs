@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Goals are attached to characters. They consist of a collection of preconditions that must be fulfilled to complete the goal.
+//These preconditions can be fulfilled through natural world state occurences or by completing actions.
+
+//An interface of all required goal methods
 public interface IGoal
 {
     int Prioritize();
@@ -11,12 +15,14 @@ public interface IGoal
     void GoalEnd();
 }
 
+//Base goal class
 public class Goal : MonoBehaviour, IGoal
 {
     protected Character character;
     protected PerceptionSystem perception;
     public List<KeyValuePair<string, object>> preconditions;
 
+    //Initialize and get component references
     public virtual void Awake()
     {
         character = GetComponent<Character>();
@@ -24,16 +30,21 @@ public class Goal : MonoBehaviour, IGoal
         preconditions = new List<KeyValuePair<string, object>>();
     }
 
+    //Perform any necessary updates each frame
     void Update()
     {
         UpdateGoal();
     }
 
+    //Default priority value lower than any real goal
     public virtual int Prioritize()
     {
         return -1;
     }
 
+    //Use perception system world state information and available actions to find a route to complete the goal
+    //Work backwards through the goal's preconditions to find a chain of actions that achieve the goal.
+    //(This is the most important part of this GOAP implementation)
     public Action ValidGoal(Action[] actions)
     {
         //Make a copy of the goal's preconditions to test against
@@ -80,10 +91,13 @@ public class Goal : MonoBehaviour, IGoal
                 }
             }
 
+            //If a suitable action has been found, remove the precondition it was checking against
             if (candidateAction != null)
             {
                 preconditionsCopy.RemoveAt(0);
 
+                //IF there are no more preconditions, then they've all been fulfilled
+                //The action that fulfilled the last precondition (the first that needs to be achieved) becomes a candidate action to be executed
                 if (preconditionsCopy.Count == 0)
                 {
                     return candidateAction;
@@ -102,16 +116,19 @@ public class Goal : MonoBehaviour, IGoal
         return candidateAction;
     }
 
+    //Anything that needs to be updated constantly
     public virtual void UpdateGoal()
     {
 
     }
 
+    //Anything that occurs immediately when the goal is chosen
     public virtual void GoalBegin()
     {
 
     }
 
+    //Anything that occurs when the goal is dropped in favor of another goal
     public virtual void GoalEnd()
     {
 

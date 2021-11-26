@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//This script keeps track of important locations to pass on to characters
+//It also tracks the game state and each team's score
 public class LocationsManager : MonoBehaviour
 {
     [SerializeField] public Transform hoardPoint;
@@ -30,12 +32,6 @@ public class LocationsManager : MonoBehaviour
     {
         UpdateScores();
         gameOverText.text = "";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     //Add 1 point to a specified team's score

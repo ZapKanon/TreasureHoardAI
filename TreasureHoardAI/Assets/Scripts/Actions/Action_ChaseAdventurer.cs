@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Move to the location of an adventurer
 public class Action_ChaseAdventurer : Action
 {
     protected override void Start()
@@ -17,6 +18,7 @@ public class Action_ChaseAdventurer : Action
 
     public override bool ValidAction()
     {
+        //Can only chase an adventurer if there's an adventurer to chase
         if (perception.worldState.Contains(new KeyValuePair<string, object>("seesAdventurer", true)))
         {
             return true;
@@ -25,9 +27,9 @@ public class Action_ChaseAdventurer : Action
         return false;
     }
 
+    //Move toward the nearest adventurer
     public override void ActionBegin()
-    {
-        //Move toward the nearest adventurer
+    {      
         character.SetDestination(perception.FindClosestTarget(perception.adventurersInView).transform.position);
     }
 

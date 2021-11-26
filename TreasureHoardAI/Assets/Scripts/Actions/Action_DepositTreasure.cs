@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Deposit treasure at a deposit location
 public class Action_DepositTreasure : Action
 {
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -18,6 +18,7 @@ public class Action_DepositTreasure : Action
 
     public override bool ValidAction()
     {
+        //Can only deposit treasure if within range of a deposit location
         if (character.carriedTreasure != null && perception.worldState.Contains(new KeyValuePair<string, object>("atDepositPoint", true)))
         {
             return true;
@@ -26,9 +27,9 @@ public class Action_DepositTreasure : Action
         return false;
     }
 
+    //Character immediately deposits their treasure
     public override void ActionBegin()
     {
-        Debug.Log(character.name + " scored a point by depositing " + character.carriedTreasure.name);
         character.DepositTreasure();      
     }
 

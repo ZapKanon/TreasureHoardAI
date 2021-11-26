@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Move to a treasure object in view and pick it up
 public class Action_GetTreasure : Action
 {
     private Treasure targetTreasure;
 
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -20,6 +20,7 @@ public class Action_GetTreasure : Action
 
     public override bool ValidAction()
     {
+        //Valid if there's treasure visible and character isn't already carrying treasure
         if (perception.treasureInView.Count > 0 && character.carriedTreasure == null)
         {
             return true;
@@ -28,6 +29,8 @@ public class Action_GetTreasure : Action
         return false;
     }
 
+    //Find the closest treasure out of those that are visible
+    //Go to that treasure
     public override void ActionBegin()
     {
         targetTreasure = perception.FindClosestTarget(perception.treasureInView).GetComponent<Treasure>();
@@ -39,6 +42,8 @@ public class Action_GetTreasure : Action
         targetTreasure = null;
     }
 
+    //Recalculate closest treasure (tresure may have been picked up by another character, or a new treasure has com into view)
+    //Go to that treasure
     public override void UpdateAction()
     {
         targetTreasure = perception.FindClosestTarget(perception.treasureInView).GetComponent<Treasure>();
@@ -49,6 +54,7 @@ public class Action_GetTreasure : Action
         {
             if (character.carriedTreasure == null)
             {
+                //Pick up the treasure upon reaching its location
                 character.PickUpTreasure(perception.FindClosestTarget(perception.treasureInView).GetComponent<Treasure>());
             }
         }

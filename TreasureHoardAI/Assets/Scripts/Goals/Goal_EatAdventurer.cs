@@ -8,6 +8,7 @@ public class Goal_EatAdventurer : Goal
     //High priority, but only possible if an adventurer is in view
     [SerializeField] int priority = 20;
 
+    //Set up preconditions in REVERSE order
     public override void Awake()
     {
         base.Awake();

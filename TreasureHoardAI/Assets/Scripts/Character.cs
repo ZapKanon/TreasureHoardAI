@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Enum containing each team of adventurers
 public enum Team
 {
     Blue,
@@ -11,6 +12,7 @@ public enum Team
     Yellow
 }
 
+//Characters include adventurers and the dragon
 public class Character : MonoBehaviour
 {
     protected NavMeshAgent navMeshAgent;
@@ -40,7 +42,7 @@ public class Character : MonoBehaviour
 
     [SerializeField] public Team team;
 
-    // Start is called before the first frame update
+    // Set up references to components and get important locations from locationsManager
     protected virtual void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -50,18 +52,14 @@ public class Character : MonoBehaviour
         dragonPatrolPoints = locationsManager.GetComponent<LocationsManager>().dragonPatrolPoints;
     }
 
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-        
-    }
-
+    //Set the character's destination using its navmesh
     public void SetDestination(Vector3 destination)
     {
         navMeshAgent.destination = new Vector3(destination.x, transform.position.y, destination.z);
         reachedDestination = false;
     }
 
+    //Check if the character has reached its destination by comparing its position to that of the destination
     public void CheckDestination()
     {
         if (Vector3.Distance(navMeshAgent.destination, new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z)) < 2f)
@@ -71,6 +69,7 @@ public class Character : MonoBehaviour
     }
 
     //Pick up a treasure object
+    //A character can only carry one piece of treasure at a time
     public void PickUpTreasure(Treasure treasure)
     {
         if (carriedTreasure == null && treasure.beingCarried == false)
@@ -91,6 +90,7 @@ public class Character : MonoBehaviour
             navMeshAgent.speed = normalSpeed;
 
             locationsManager.GetComponent<LocationsManager>().AddToScore(team);
+
             //Disable tresure when at deposit point so it doesn't get counted twice
             depositedTreasure.gameObject.SetActive(false);
         }
@@ -102,7 +102,7 @@ public class Character : MonoBehaviour
         food.Die();
     }
     
-    //Leave this earth (likely a a result of being eaten)
+    //Leave this earth (likely as a result of being eaten)
     public void Die()
     {   
         //Drop any carried treasure

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Walk to preset points surrounding the dragon's hoard in a clockwise fashion
+//Characters know where these points are at all times
 public class Action_Patrol : Action
 {
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -32,6 +33,8 @@ public class Action_Patrol : Action
 
     }
 
+    //Check if the destionation point has been reached
+    //If it has, set destination to the next patrol point in the list
     public override void UpdateAction()
     {
         character.CheckDestination();

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//The Goal Oriented Action Planner processes a character's list of goals against their list of actions
+//If the available actions + the current world state allow for a goal to be completed,
+//begin executing actions that lead to that goal.
 public class GOAPlanner : MonoBehaviour
 {
     Goal[] goals;
@@ -16,13 +19,7 @@ public class GOAPlanner : MonoBehaviour
         actions = GetComponents<Action>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    // Check all goals, actions, and world state to determine what action to take
     void Update()
     {
         //Determine highest priority goal and corresponding action
@@ -71,7 +68,7 @@ public class GOAPlanner : MonoBehaviour
                 activeAction.ActionBegin();
             }
         }
-        //Same goal as before
+        //If the goal is the same goal as before
         else if (activeGoal == optimalGoal)
         {
             //Action could change while achieving same goal
@@ -82,9 +79,10 @@ public class GOAPlanner : MonoBehaviour
                 activeAction.ActionBegin();
             }
         }
-        //Setting a new goal
+        //If a new goal is being set as optimal
         else if (activeGoal != optimalGoal)
         {
+            //End the previous goal and action
             activeGoal.GoalEnd();
             activeAction.ActionEnd();
 
@@ -102,7 +100,7 @@ public class GOAPlanner : MonoBehaviour
             }
         }
 
-        //Update the action
+        //Update the action each frame
         if (activeAction != null)
         {
             activeAction.UpdateAction();
