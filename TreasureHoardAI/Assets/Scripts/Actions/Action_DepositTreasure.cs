@@ -28,12 +28,13 @@ public class Action_DepositTreasure : Action
 
     public override void ActionBegin()
     {
-        character.DepositTreasure();
+        Debug.Log(character.name + " scored a point by depositing " + character.carriedTreasure.name);
+        character.DepositTreasure();      
     }
 
     public override void ActionEnd()
     {
-
+        
     }
 
     public override void UpdateAction()

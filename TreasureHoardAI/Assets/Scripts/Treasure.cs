@@ -25,6 +25,7 @@ public class Treasure : MonoBehaviour
     {
         if (beingCarried == false)
         {
+            beingCarried = true;
             carryingCharacter = character;
             carryingCharacter.carriedTreasure = this;
             gameObject.SetActive(false);

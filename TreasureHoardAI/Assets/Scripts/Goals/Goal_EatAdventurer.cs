@@ -11,9 +11,9 @@ public class Goal_EatAdventurer : Goal
     public override void Awake()
     {
         base.Awake();
-        preconditions.Add(new KeyValuePair<string, object>("seesAdventurer", true));
-        preconditions.Add(new KeyValuePair<string, object>("nearAdventurer", true));
         preconditions.Add(new KeyValuePair<string, object>("eatenAdventurer", true));
+        preconditions.Add(new KeyValuePair<string, object>("nearAdventurer", true));
+        preconditions.Add(new KeyValuePair<string, object>("seesAdventurer", true));
     }
 
     public override int Prioritize()

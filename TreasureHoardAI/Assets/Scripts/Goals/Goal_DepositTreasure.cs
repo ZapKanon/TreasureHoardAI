@@ -6,7 +6,7 @@ public class Goal_DepositTreasure : Goal
 {
     //Pick up nearby treasure, take it to the deposit point, and deposit it
     //Very high priority, but only valid if carrying treasure
-    [SerializeField] int priority = 30;
+    [SerializeField] int priority = 20;
 
     public override void Awake()
     {

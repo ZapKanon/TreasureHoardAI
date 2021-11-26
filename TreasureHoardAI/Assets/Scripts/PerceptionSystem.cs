@@ -95,6 +95,8 @@ public class PerceptionSystem : MonoBehaviour
             {
                 worldState.Add(new KeyValuePair<string, object>("hasTreasure", true));
             }
+
+            locationsManager.GetComponent<LocationsManager>().UpdateScores();
         }
     }
 
@@ -118,10 +120,14 @@ public class PerceptionSystem : MonoBehaviour
                         if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                         {
                             targetInView = true;
-                            Debug.Log(name + " sees " + target.name);
-                            Debug.DrawLine(transform.position, target.position, Color.green, 0.2f);
+                            
                             if (targetType == "Adventurer")
                             {
+                                if (this.name == "Dragon")
+                                {
+                                    Debug.Log(name + " sees " + target.name);
+                                    Debug.DrawLine(transform.position, target.position, Color.green, 0.2f);
+                                }
                                 adventurersInView.Add(target.gameObject);
                             }
                             else if (targetType == "Dragon")
@@ -167,7 +173,7 @@ public class PerceptionSystem : MonoBehaviour
                 closestDistance = Vector3.Distance(transform.position, target.transform.position);
             }
         }
-        Debug.Log(this.gameObject.name + " is closest to " + closest.gameObject.name);
+        //Debug.Log(this.gameObject.name + " is closest to " + closest.gameObject.name);
 
         return closest;
     }

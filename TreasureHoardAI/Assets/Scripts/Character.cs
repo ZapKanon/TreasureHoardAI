@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     protected NavMeshAgent navMeshAgent;
 
     //The location where the character is immediately heading
-    protected Vector2 destinationPoint;
+    [SerializeField] protected Vector2 destinationPoint;
 
     //Distance at which a character is considered to have reached their destination
     protected float arrivalDistance = 5.01f;
@@ -29,6 +29,9 @@ public class Character : MonoBehaviour
 
     //Locations surrounding the hoard where the dragon patrols
     [SerializeField] public List<Transform> dragonPatrolPoints;
+
+    [SerializeField] float carryingSpeed = 3f;
+    [SerializeField] float normalSpeed = 4.5f;
 
     public bool reachedDestination = false;
 
@@ -61,11 +64,6 @@ public class Character : MonoBehaviour
 
     public void CheckDestination()
     {
-        if (this.gameObject.name != "Dragon")
-        {
-            //Debug.Log("Dragon is going here: " + navMeshAgent.destination + " but is sitting here: " + new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z));
-        }
-
         if (Vector3.Distance(navMeshAgent.destination, new Vector3(transform.position.x, navMeshAgent.transform.position.y - transform.localScale.y, transform.position.z)) < 2f)
         {
             reachedDestination = true;
@@ -78,6 +76,7 @@ public class Character : MonoBehaviour
         if (carriedTreasure == null && treasure.beingCarried == false)
         {
             treasure.PickedUp(this);
+            navMeshAgent.speed = carryingSpeed;
         }
     }
 
@@ -86,10 +85,14 @@ public class Character : MonoBehaviour
     {
         if (carriedTreasure != null)
         {
+            Treasure depositedTreasure = carriedTreasure;
             carriedTreasure.gameObject.SetActive(true);
             carriedTreasure.Deposited(this);
+            navMeshAgent.speed = normalSpeed;
 
             locationsManager.GetComponent<LocationsManager>().AddToScore(team);
+            //Disable tresure when at deposit point so it doesn't get counted twice
+            depositedTreasure.gameObject.SetActive(false);
         }
     }
 
@@ -105,6 +108,7 @@ public class Character : MonoBehaviour
         //Drop any carried treasure
         if (carriedTreasure != null)
         {
+            carriedTreasure.gameObject.SetActive(true);
             carriedTreasure.Deposited(this);
         }
 
