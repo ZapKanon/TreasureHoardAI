@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Action" Collapsed="true">
+    <Position X="14" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAJBAQAACAAAAAAAAAwAAAAAAAQAAABAAAAAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_ChaseAdventurer" Collapsed="true">
+    <Position X="8.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAAAwAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action_ChaseAdventurer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_DepositTreasure" Collapsed="true">
+    <Position X="13" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAAAwAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action_DepositTreasure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_EatAdventurer" Collapsed="true">
+    <Position X="17.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAAAwAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action_EatAdventurer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_Flee" Collapsed="true">
+    <Position X="22" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAAAwAAAAAAAEAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action_Flee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_GetTreasure" Collapsed="true">
+    <Position X="6.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAAAwAAAAQAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action_GetTreasure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_GoToDepositPoint" Collapsed="true">
+    <Position X="10.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAAAwAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action_GoToDepositPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_GoToHoard" Collapsed="true">
+    <Position X="15.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAAAwAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action_GoToHoard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_Patrol" Collapsed="true">
+    <Position X="19.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAAAwAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Actions\Action_Patrol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Adventurer" Collapsed="true">
+    <Position X="11.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Adventurer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAQAkCAAAEAgBGQEAAAAAAAQCAAAgAACAARAQAA=</HashCode>
+      <FileName>Assets\Scripts\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dragon" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Dragon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Goal" Collapsed="true">
+    <Position X="14" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAIAAAABAAAAAAUgAQAAAAAAAAAAAAAAAAAABAEA=</HashCode>
+      <FileName>Assets\Scripts\Goals\Goal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Goal_DepositTreasure" Collapsed="true">
+    <Position X="9.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Goals\Goal_DepositTreasure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Goal_EatAdventurer" Collapsed="true">
+    <Position X="11.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Goals\Goal_EatAdventurer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Goal_Flee" Collapsed="true">
+    <Position X="14" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Goals\Goal_Flee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Goal_GoToHoard" Collapsed="true">
+    <Position X="16.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Goals\Goal_GoToHoard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Goal_Patrol" Collapsed="true">
+    <Position X="18.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Goals\Goal_Patrol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOAPlanner" Collapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAACAAAAAAAAAAAIAAAAAAAAAgAAAAAkA=</HashCode>
+      <FileName>Assets\Scripts\GOAPlanner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LocationsManager" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgggAAECAAAJCAAAAGAAIgAAAAEAAABAIACIKAAAA=</HashCode>
+      <FileName>Assets\Scripts\LocationsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PerceptionSystem" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAIBAAAGCAAAAAAICAAAAQAAAEACAAQgACBAABAAIA=</HashCode>
+      <FileName>Assets\Scripts\PerceptionSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Treasure" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAEAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Treasure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IGoal" Collapsed="true">
+    <Position X="15.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAABAAAAAAUgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Goals\Goal.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Team" Collapsed="true">
+    <Position X="11.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAADAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

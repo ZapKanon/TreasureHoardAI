@@ -32,8 +32,8 @@ public class Character : MonoBehaviour
     //Locations surrounding the hoard where the dragon patrols
     [SerializeField] public List<Transform> dragonPatrolPoints;
 
-    [SerializeField] float carryingSpeed = 3f;
-    [SerializeField] float normalSpeed = 4.5f;
+    [SerializeField] float carryingSpeed = 3.3f;
+    [SerializeField] float normalSpeed = 6f;
 
     public bool reachedDestination = false;
 
